@@ -38,8 +38,8 @@ const userRoutes = require("./routes/user");
 const MongoStore = require("connect-mongo");
 
 //CONNECT TO DB 
-const dbUrl = "mongodb://localhost:27017/yelpCamp"
-// const dbUrl = process.env.DB_URL
+// const dbUrl = "mongodb://localhost:27017/yelpCamp"
+const dbUrl = process.env.DB_URL
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;

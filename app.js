@@ -39,7 +39,7 @@ const MongoStore = require("connect-mongo");
 
 //CONNECT TO DB 
 // const dbUrl = "mongodb://localhost:27017/yelpCamp"
-const dbUrl = process.env.DB_URL
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelpCamp"
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -67,9 +67,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 //////////////////////CONFIGURE SESSION
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+
 const store = new MongoStore({
     mongoUrl: dbUrl,
-    secret: 'rupies',
+    secret,
     saveUninitialized: false, // don't create session until something stored
     resave: false, //don't save session if unmodified
     touchAfter: 24 * 3600 // time period in seconds
@@ -82,7 +84,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name: 'fresh',
-    secret: 'rupies',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {

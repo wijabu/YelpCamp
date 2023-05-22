@@ -2,10 +2,6 @@ if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
 
-console.log(process.env.CLOUDINARY_SECRET);
-console.log(process.env.CLOUDINARY_KEY);
-console.log(process.env.CLOUDINARY_CLOUD_NAME);
-
 const express = require("express");
 const app = express();
 //require absolute paths to directories
